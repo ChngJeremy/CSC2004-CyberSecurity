@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>720</width>
-    <height>600</height>
+    <height>597</height>
    </rect>
   </property>
   <property name="contextMenuPolicy">
@@ -25,7 +25,7 @@
      <x>0</x>
      <y>-10</y>
      <width>731</width>
-     <height>601</height>
+     <height>611</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -38,7 +38,7 @@ background-color: rgb(33, 37, 43);</string>
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="titlelabel">
     <property name="geometry">
      <rect>
       <x>260</x>
@@ -69,7 +69,7 @@ background-color: rgb(33, 37, 43);</string>
      <number>0</number>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="quitButton">
     <property name="geometry">
      <rect>
       <x>630</x>
@@ -85,7 +85,7 @@ background-color: rgb(33, 37, 43);</string>
      <string>Quit</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="fileencodelabel">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -125,7 +125,7 @@ background-color: rgb(33, 37, 43);</string>
      <number>0</number>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="piclabel_3">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -165,7 +165,7 @@ background-color: rgb(33, 37, 43);</string>
      <number>0</number>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="encodeButton">
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -190,9 +190,34 @@ background-color: rgb(33, 37, 43);</string>
       <height>22</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(202, 202, 202);</string>
     </property>
+    <item>
+     <property name="text">
+      <string>example.txt</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>sample.mp4</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+    </item>
    </widget>
    <widget class="QComboBox" name="comboBox_2">
     <property name="geometry">
@@ -203,11 +228,30 @@ background-color: rgb(33, 37, 43);</string>
       <height>22</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(202, 202, 202);</string>
     </property>
+    <item>
+     <property name="text">
+      <string>Picture1.png</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Picture2.jpeg</string>
+     </property>
+    </item>
    </widget>
-   <widget class="QFrame" name="frame">
+   <widget class="QFrame" name="pictureframe">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -225,8 +269,27 @@ background-color: rgb(33, 37, 43);</string>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <widget class="QLabel" name="label_before">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>291</width>
+       <height>231</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../../../../Downloads/photo-1553949285-bdcb31ec5cba.jpg</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
    </widget>
-   <widget class="QFrame" name="frame_2">
+   <widget class="QFrame" name="encodeframe">
     <property name="geometry">
      <rect>
       <x>330</x>
@@ -245,7 +308,7 @@ background-color: rgb(33, 37, 43);</string>
      <enum>QFrame::Raised</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="originalpiclabel">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -325,7 +388,7 @@ background-color: rgb(33, 37, 43);</string>
      <number>0</number>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton">
+   <widget class="QRadioButton" name="txtradioButton">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -358,7 +421,7 @@ background-color: rgb(33, 37, 43);</string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton2">
+   <widget class="QRadioButton" name="mp4radioButton">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -393,6 +456,19 @@ background-color: rgb(33, 37, 43);</string>
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>comboBox</tabstop>
+  <tabstop>txtradioButton</tabstop>
+  <tabstop>comboBox_2</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>quitButton</tabstop>
+  <tabstop>encodeButton</tabstop>
+  <tabstop>pushButton_4</tabstop>
+  <tabstop>comboBox_3</tabstop>
+  <tabstop>comboBox_4</tabstop>
+  <tabstop>mp4radioButton</tabstop>
+  <tabstop>radioButton_2</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
