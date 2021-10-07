@@ -36,8 +36,7 @@ class ToolTip(object):
         tw.wm_overrideredirect(1)
         tw.wm_geometry("+%d+%d" % (x, y))
         label = Label(tw, text=self.text, justify=LEFT,
-                      background="#ffffe0", relief=SOLID, borderwidth=1,
-                      font=("Gothic MS", "8", "normal"))
+                      background="#ffffe0", relief=SOLID,font=("Gothic MS", "8", "normal"))
         label.pack(ipadx=1)
 
     def hidetip(self):
@@ -88,11 +87,11 @@ bytes_to_recover= 10
 
 #button colours
 Home_BACK_COL = "#4e5254"
-ButtonColour_1 = "#90eebf"
-ButtonColour_2 = "#f39797"
-ButtonColour_3 = "#E66A82"
-Banner_Colour_1 = "#fafad2"
-Banner_Colour_2 = "#141414"
+ButtonColour_1 = "#90eebf" # encode and decode buttons
+ButtonColour_2 = "#f39797" # back buttons red
+ButtonColour_3 = "#E66A82" # about buttons
+Banner_Colour_1 = "#fafad2" #main banner colour to contrast black
+Banner_Colour_2 = "#141414" # bolds the borders better
 
 mainWindow.configure(bg=Home_BACK_COL)
 
