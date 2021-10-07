@@ -58,7 +58,7 @@ def CreateToolTip(widget, text):
     widget.bind('Enter', enter)
     widget.bind('Leave', leave)
 
-#Get Path Of Assestes Folder and convert \ to /
+#Get Path Of Assessts Folder and convert \ to /
 def resource_path(relative_path):
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
     path_For =  os.path.join(base_path, "Assets", relative_path)
