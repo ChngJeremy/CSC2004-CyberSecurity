@@ -1,3 +1,10 @@
+"""
+
+document.py:
+
+Currently able to hide .txt and .xls files into an image file.
+
+"""
 import PIL as pillow
 from PIL import Image
 import binascii
@@ -239,6 +246,12 @@ def extract(filename, retrieve):
     return "Error, unable to retrieve the hidden file!\n"
 
 if __name__ == '__main__':
+
+    print("####################################################################\n")
+    print("!Hides documents into cover object (tested with .jpg)!\n")
+    print("Please ensure that files used are in the same directory!\n")
+    print("File types supported: .txt, .xls\n")
+    print("####################################################################\n")
 
     # Prints out a menu for user input
 
