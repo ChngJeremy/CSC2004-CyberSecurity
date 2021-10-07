@@ -5,13 +5,16 @@ from click.decorators import command
 from tkinter import *
 import webbrowser
 import struct
+
 #import of PIL for image encoding and decoding
 from PIL import Image
 import numpy as np
 import cv2
+
 #import of wave for audio encoding and decoding functions
 import wave
 import math
+
 #sys imports
 import sys
 import os
@@ -80,13 +83,12 @@ filename = ""
 output_filename = ""
 text_Filename = ""
 
-#don't changes values
 #todo to implement sliders for lsb shifts############
 num_lsb = 2
 bytes_to_recover= 10
 
 #button colours
-Home_BACK_COL = "#4e5254"
+Home_BACK_COL = "#21252b" #home background colour
 ButtonColour_1 = "#90eebf" # encode and decode buttons
 ButtonColour_2 = "#f39797" # back buttons red
 ButtonColour_3 = "#E66A82" # about buttons
@@ -135,6 +137,7 @@ class Steganography(object):
         # Check the images dimensions
         if img2.size[0] > img1.size[0] or img2.size[1] > img1.size[1]:
             raise ValueError('Image 2 should not be larger than Image 1!')
+        #compares between payload image and carrier image to prevent payload from overridding the carrier image
 
         # Get the pixel map of the two images
         pixel_map1 = img1.load()
@@ -144,9 +147,11 @@ class Steganography(object):
         new_image = Image.new(img1.mode, img1.size)
         pixels_new = new_image.load()
 
+        #maps the horizontal and vertical pixels of the image from int to binary.
         for i in range(img1.size[0]):
             for j in range(img1.size[1]):
                 rgb1 = Steganography.__int_to_bin(pixel_map1[i, j])
+                
 
                 # Use a black pixel as default
                 rgb2 = Steganography.__int_to_bin((0, 0, 0))
@@ -165,14 +170,14 @@ class Steganography(object):
     @staticmethod
     def unmerged(img):
 
-        # Load the pixel map
+        # Loads the pixel map
         pixel_map = img.load()
 
         # Create the new image and load the pixel map
         new_image = Image.new(img.mode, img.size)
         pixels_new = new_image.load()
 
-        # Tuple used to store the image original size
+        # Tuple used to store the original size of the image
         original_size = img.size
 
         for i in range(img.size[0]):
@@ -207,7 +212,7 @@ def unmerged(img, output):
     unmerged_image = Steganography.unmerged(Image.open(img))
     unmerged_image.save(output)
 
-#Function Of Hinding And Extracting Image From Image End Here----------------------------
+#Function Of Hinding And Extracting Image From Image ends here######################
 
 
 #Function To Hide Unhinge Text In Audio File (.wav).
@@ -2017,12 +2022,12 @@ def show_About():
     About_banner_Frame.pack()
 
     Label(AboutFrame,text="  ",background=Home_BACK_COL).pack(side=LEFT)
-    HomeBtn = Button(AboutFrame,text="Back To Home",font=("Copperplate Gothic Bold",10),borderwidth=2, relief=SUNKEN,background=Home_BACK_COL,activebackground=Home_BACK_COL,command=show_HomeScreen)
+    HomeBtn = Button(AboutFrame,text="Back To Home",font=("Copperplate Gothic Bold",10),borderwidth=2, relief=RAISED,background=ButtonColour_3,activebackground=Home_BACK_COL,command=show_HomeScreen)
     HomeBtn.pack(side=LEFT)
     HomeBtn.bind('<Enter>', HomeBtn_on_enter)
     HomeBtn.bind('<Leave>', HomeBtn_on_leave)
     Label(AboutFrame,text="                                                  ",background=Home_BACK_COL).pack(side=LEFT)
-    GITBtn = Button(AboutFrame,text="Github Link",font=("Javanese Text",10,ITALIC),borderwidth=2, relief=SUNKEN,background=Home_BACK_COL,fg="blue",activebackground=Home_BACK_COL,command=lambda:(webbrowser.open('https://github.com/Hrishikesh7665')))
+    GITBtn = Button(AboutFrame,text="Github Link",font=("Copperplate Gothic Bold",10,ITALIC),borderwidth=2, relief=RAISED,background=ButtonColour_3,activebackground=Home_BACK_COL,command=lambda:(webbrowser.open('https://github.com/ChngJeremy/CSC2004-CyberSecurity.git')))
     GITBtn.pack(side=RIGHT)
     GITBtn.bind('<Enter>', GITBtn_on_enter)
     GITBtn.bind('<Leave>', GITBtn_on_leave)
