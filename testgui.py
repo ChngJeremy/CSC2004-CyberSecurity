@@ -1,20 +1,22 @@
-#Import Modules
+#Import tkinter and GUI modules
 from tkinter import filedialog, messagebox
 from tkinter.font import BOLD, ITALIC
 from click.decorators import command
-from PIL import Image
 from tkinter import *
-import numpy as np
 import webbrowser
 import struct
-import click
+#import of PIL for image encoding and decoding
+from PIL import Image
+import numpy as np
+import cv2
+#import of wave for audio encoding and decoding functions
 import wave
 import math
+#sys imports
 import sys
-import cv2
 import os
 
-#For Create Button ToolTip
+#Creation of Button ToolTips
 class ToolTip(object):
     def __init__(self, widget):
         self.widget = widget
@@ -80,10 +82,11 @@ output_filename = ""
 text_Filename = ""
 
 #don't changes values
+#todo to implement sliders for lsb shifts############
 num_lsb = 2
 bytes_to_recover= 10
 
-#Colours
+#button colours
 Home_BACK_COL = "#4e5254"
 ButtonColour_1 = "#90eebf"
 ButtonColour_2 = "#f39797"
@@ -94,10 +97,7 @@ Banner_Colour_2 = "#141414"
 mainWindow.configure(bg=Home_BACK_COL)
 
 
-
-
-
-#Call this function to open tkinter widow in center
+#Calling this function to open tkinter window in center
 def center_window(name,w, h):
     ws = name.winfo_screenwidth()
     hs = name.winfo_screenheight()
@@ -108,7 +108,7 @@ center_window(mainWindow,500, 500)
 mainWindow.title("CSC2004 - Cybersecurity Fundementals")
 mainWindow.resizable(FALSE,FALSE)
 
-#Main Backend Function Of Hide Image In Image And Extract Image From Image----------------------------
+#Main Backend Function Of Hide Image In Image And Extract Image From Image
 class Steganography(object):
     @staticmethod
     def __int_to_bin(rgb):
@@ -212,8 +212,8 @@ def unmerged(img, output):
 
 
 #Function To Hide Unhinge Text In Audio File (.wav).
-# I failed to convert .mp3 to .wav so currently .wav is supported.
-
+# todo currently only .wav is supported to convert mp3 to .wav next time
+#todo to finish the documentation for audio functions
 def prepare(sound_path):
     global sound, params, n_frames, n_samples, fmt, mask, smallest_byte
     sound = wave.open(sound_path, "r")
@@ -525,13 +525,13 @@ class LSBSteg():
             output += bytearray([int(self.read_byte(),2)])
         return output
 
-#Function to hide unhidden text in image file is end here------------------------------
-#Backend PART IS END HERE ----------------------------------------------------------------------
+#Function to hide unhidden text in image file ends here  ##############################
+#Backend PART ENDS HERE################################################################
 
 
 
 
-#UI Part Start---------------------------------------------------------------
+#UI portion Starts here#########################################################################
 #After Click TextButton On Encode screen
 def click_EncodeScreen_Text():
     global filename, output_filename, text_Filename
@@ -2142,10 +2142,9 @@ def show_HomeScreen():
 
 mainWindow.protocol("WM_DELETE_WINDOW", exit_CON)
 mainWindow.tk.call('wm', 'iconphoto', mainWindow._w, PhotoImage(file=icon_1_path))
-#End of UI part----------------------------------------------------------------
+####################################End of UI portion##############################
 
-
-#CAll THE MAIN Function--------
+#Calling the main function in order to excecute file
 if __name__ == "__main__":
     show_HomeScreen()
     mainWindow.mainloop()
