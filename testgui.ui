@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>717</width>
+    <width>745</width>
     <height>597</height>
    </rect>
   </property>
@@ -78,8 +78,8 @@ background-color: rgb(33, 37, 43);</string>
    <widget class="QPushButton" name="quitButton">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>560</y>
+      <x>660</x>
+      <y>550</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -113,7 +113,7 @@ background-color: rgb(33, 37, 43);</string>
      <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Select file to be encoded:</string>
+     <string>Select payload to be encoded:</string>
     </property>
     <property name="textFormat">
      <enum>Qt::PlainText</enum>
@@ -136,7 +136,7 @@ background-color: rgb(33, 37, 43);</string>
      <rect>
       <x>40</x>
       <y>170</y>
-      <width>221</width>
+      <width>151</width>
       <height>51</height>
      </rect>
     </property>
@@ -153,13 +153,16 @@ background-color: rgb(33, 37, 43);</string>
      <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Select Picture to be encoded to:</string>
+     <string>Select medium to be encoded to:</string>
     </property>
     <property name="textFormat">
      <enum>Qt::PlainText</enum>
     </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
     <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     <set>Qt::AlignJustify|Qt::AlignVCenter</set>
     </property>
     <property name="wordWrap">
      <bool>true</bool>
@@ -174,8 +177,8 @@ background-color: rgb(33, 37, 43);</string>
    <widget class="QPushButton" name="encodeButton">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>560</y>
+      <x>150</x>
+      <y>550</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -258,67 +261,10 @@ alternate-background-color: rgb(255, 255, 255);</string>
      </property>
     </item>
    </widget>
-   <widget class="QFrame" name="pictureframe">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>320</y>
-      <width>291</width>
-      <height>231</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(202, 202, 202);</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QLabel" name="label_before">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>291</width>
-       <height>231</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap>../../../../Downloads/photo-1553949285-bdcb31ec5cba.jpg</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QFrame" name="encodeframe">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>320</y>
-      <width>281</width>
-      <height>231</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(202, 202, 202);</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-   </widget>
    <widget class="QLabel" name="originalpiclabel">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>130</x>
       <y>300</y>
       <width>141</width>
       <height>16</height>
@@ -358,7 +304,7 @@ alternate-background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="encodedpiclabel">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>440</x>
       <y>300</y>
       <width>141</width>
       <height>20</height>
@@ -377,7 +323,7 @@ alternate-background-color: rgb(255, 255, 255);</string>
      <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Encoded Picture</string>
+     <string>Stego Picture</string>
     </property>
     <property name="textFormat">
      <enum>Qt::PlainText</enum>
@@ -512,8 +458,8 @@ alternate-background-color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="DecodeButton">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>560</y>
+      <x>470</x>
+      <y>550</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -754,6 +700,84 @@ alternate-background-color: rgb(255, 255, 255);</string>
      <number>0</number>
     </property>
    </widget>
+   <widget class="QLabel" name="Picturelabel">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>330</y>
+      <width>271</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Gothic</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="acceptDrops">
+     <bool>true</bool>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(202, 202, 202);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="text">
+     <string>Insert Image Here!</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Stegolabel">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>330</y>
+      <width>271</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Gothic</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="acceptDrops">
+     <bool>true</bool>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(202, 202, 202);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="text">
+     <string>Insert Image Here!</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
  </widget>
  <tabstops>
@@ -765,5 +789,22 @@ alternate-background-color: rgb(255, 255, 255);</string>
   <tabstop>mp4radioButton</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>quitButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>690</x>
+     <y>568</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1213</x>
+     <y>48</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
