@@ -1,7 +1,6 @@
 #Import tkinter and GUI modules
 from tkinter import filedialog, messagebox
 from tkinter.font import BOLD, ITALIC
-from click.decorators import command
 from tkinter import *
 import webbrowser
 import struct
@@ -2053,9 +2052,14 @@ def show_EncodeScreen():
     Label(EncodeFrame,text=" ",font=("Gothic MS",8),bg=Home_BACK_COL).pack()
     Text_button = Button(EncodeFrame,text="Text/Text File",font=("Gothic MS",14,BOLD,ITALIC),width=12,command=click_EncodeScreen_Text,bg=ButtonColour_1)
     Text_button.pack()
+
+    Label(EncodeFrame,text=" ",font=("Gothic MS",8),bg=Home_BACK_COL).pack()
+    Text_button = Button(EncodeFrame,text="Image into\n Audio",font=("Gothic MS",14,BOLD,ITALIC),width=12,command=click_EncodeScreen_Text,bg=ButtonColour_1)#todo change command button
+    Text_button.pack()
+
     CreateToolTip(Text_button, text = "Encode Text Or Text File\nBehind An Image File")
     Label(EncodeFrame,text=" ",font=("Gothic MS",4),bg=Home_BACK_COL).pack()
-    Audio_button = Button(EncodeFrame,text="Audio",font=("Gothic MS",14,BOLD,ITALIC),width=12,command=click_Audio_Encode_Screen,bg=ButtonColour_1)
+    Audio_button = Button(EncodeFrame,text="Text into Audio",font=("Gothic MS",14,BOLD,ITALIC),width=12,command=click_Audio_Encode_Screen,bg=ButtonColour_1)
     Audio_button.pack()
     CreateToolTip(Audio_button, text = "Encode Text Or Text File\nBehind An Audio File")
     Label(EncodeFrame,text=" ",font=("Gothic MS",4),bg=Home_BACK_COL).pack()
