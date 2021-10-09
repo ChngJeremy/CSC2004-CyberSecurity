@@ -33,6 +33,8 @@ def encode_audio(image_name, secret_data, num_of_lsb):
     ##############
     data_index = 0
     binary_secret_data = audio_to_bin(secret_data)  # convert data to binary
+    if lsb>1:
+        binary_secret_data += (lsb-len(binary_secret_data)%lsb) * "0" #Padding data with 0 to match LSB replacement if >1
     data_len = len(binary_secret_data)  # size of data to hide
     for row in image:
         for pixel in row:
