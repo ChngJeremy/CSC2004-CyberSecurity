@@ -1204,6 +1204,195 @@ def click_Audio_Encode_Screen():
     EncodeFrame_Button5 = Button(AudioEncodeFrame_8,text="Encode",font=("Gothic MS",14,BOLD,ITALIC),width=12,state=DISABLED,bg=ButtonColour_1,command=main_Text_encode)
     EncodeFrame_Button5.pack(side=LEFT)
 
+###todo
+def click_Image_to_Audio_Encode_Screen():
+    global filename, output_filename, text_Filename
+    #Input File Chooser
+    def choose_Input_file():
+        global filename
+        filename = filedialog.askopenfilename(title = "Select Carrier Image",filetypes = (("jpg files","*.jpg"),("jpeg files","*.jpeg"),("png files","*.png")))
+        filename_con = filename.replace('/', '\\')
+        carrier_Entry.set(filename_con)
+        EncodeFrame_EntryBox1.xview_moveto(1)
+        if EncodeFrame_EntryBox1.get() != "":
+            EncodeFrame_Button2.config(state=NORMAL)
+            EncodeFrame_Button1.config(text="Change")
+        else:
+            EncodeFrame_Button2.config(state=DISABLED)
+            EncodeFrame_Button1.config(text="Select")
+            EncodeFrame_Button3.config(state=DISABLED)
+            EncodeFrame_Button5.config(state=DISABLED)
+            carrier_Entry.set("")
+    #Output File Chooser
+    def choose_Output_file():
+        global output_filename
+        foldername = filedialog.askdirectory(title = "Select Output Folder")
+        Org_filename = os.path.basename(filename)
+        Org_filename = os.path.splitext(Org_filename)[0]
+        if foldername != "":
+            output_filename = foldername+"/"+Org_filename+"_Encoded.png"
+        foldername_con = output_filename.replace('/', '\\')
+        output_Entry.set(foldername_con)
+        EncodeFrame_EntryBox2.xview_moveto(1)
+        if EncodeFrame_EntryBox2.get() != "":
+            EncodeFrame_Button2.config(text="Change")
+            EncodeFrame_Button3.config(state=NORMAL)
+        else:
+            EncodeFrame_Button2.config(text="Select")
+            EncodeFrame_Button3.config(state=DISABLED)
+            EncodeFrame_Button5.config(state=DISABLED)
+            output_Entry.set("")
+
+    #Choose Audio file
+    def choose_IN_Image__file():
+        global text_Filename
+        text_Filename = filedialog.askopenfilename(title = "Select Audio File",filetypes = (("wave files","*.wav"),("png files","*.png")))
+        filename_con = text_Filename.replace('/', '\\')
+        TextFile_Entry.set(filename_con)
+        EncodeFrame_EntryBox3.xview_moveto(1)
+        if EncodeFrame_EntryBox3.get() != "":
+            EncodeFrame_Button3.config(text="Change")
+            EncodeFrame_Button5.config(state=NORMAL)
+        else:
+            EncodeFrame_Button3.config(text="Select")
+            EncodeFrame_Button5.config(state=DISABLED)
+            TextFile_Entry.set("")
+
+    def main_Image_encode():
+        global filename,output_filename,text_Filename
+        if EncodeFrame_Button5['text'] == "Encode":
+            try:
+                EncodeFrame_Button5.config(state=DISABLED,text="Reset",bg=ButtonColour_1)
+                EncodeFrame_Button4.config(state=DISABLED)
+                merge(filename, text_Filename, output_filename)
+                messagebox.showinfo("Operation Successful","Task Completed")
+            except:
+                messagebox.showerror("Error!!","An Unexpected Error Occurred\nPlease Try Again :-(")
+                EncodeFrame_Button5.config(text="Encode",state=NORMAL,bg=ButtonColour_1)
+                EncodeFrame_Button4.config(state=NORMAL)
+            EncodeFrame_Button5.config(state=NORMAL)
+            EncodeFrame_Button4.config(state=NORMAL)
+        elif EncodeFrame_Button5['text'] == "Reset":
+            EncodeFrame_Button5.config(text="Encode",bg=ButtonColour_1)
+            carrier_Entry.set("")
+            output_Entry.set("")
+            TextFile_Entry.set("")
+            text_editor_data.set("")
+            filename = ""
+            output_filename = ""
+            text_Filename = ""
+            CheckVar1.set(0)
+            CheckVar2.set(0)
+            click_Image_Encode_Screen()
+
+    def back_Btn_Fun():
+        global filename,output_filename,text_Filename
+        carrier_Entry.set("")
+        output_Entry.set("")
+        TextFile_Entry.set("")
+        text_editor_data.set("")
+        filename = ""
+        output_filename = ""
+        text_Filename = ""
+        CheckVar1.set(0)
+        CheckVar2.set(0)
+        show_EncodeScreen()
+
+
+    for i in mainWindow.winfo_children():
+        i.destroy()
+    ImageEncodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
+    Label(mainWindow,text=" ",font=("Gothic MS",10),bg=Home_BACK_COL).pack()
+
+    ImageEncodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
+    ImageEncodeFrame.pack(side=TOP,anchor=W)
+    Label(ImageEncodeFrame,text="    ",font=("Gothic MS",4),bg=Home_BACK_COL).pack(side=LEFT)
+    Label(ImageEncodeFrame,text="Carrier Image",font=("Gothic MS",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
+
+    Label(mainWindow,text="  ",font=("Gothic MS",1),bg=Home_BACK_COL).pack()
+
+    ImageEncodeFrame_2 = Frame(mainWindow,bg=Home_BACK_COL)
+    Label(ImageEncodeFrame_2,text="    ",font=("Gothic MS",4),bg=Home_BACK_COL).pack(side=LEFT)
+
+    xscrollbar = Scrollbar(ImageEncodeFrame_2, orient=HORIZONTAL)
+    xscrollbar.pack(side=BOTTOM,fill=BOTH)
+
+    EncodeFrame_EntryBox1 = Entry(ImageEncodeFrame_2,cursor='',textvariable=carrier_Entry,font=("century",13),xscrollcommand=xscrollbar.set,width=33,state=DISABLED)
+    EncodeFrame_EntryBox1.pack(side=LEFT)
+
+    xscrollbar.config(command=EncodeFrame_EntryBox1.xview,bg=Home_BACK_COL)
+
+    Label(ImageEncodeFrame_2,text="      ",font=("Gothic MS",4),bg=Home_BACK_COL).pack(side=LEFT)
+    EncodeFrame_Button1 = Button(ImageEncodeFrame_2,text="Select",font=("Gothic MS",12),width=6,height=1,command=choose_Input_file)
+    EncodeFrame_Button1.pack(side=RIGHT)
+
+    ImageEncodeFrame_2.pack(side=TOP,anchor=W)
+
+    Label(mainWindow,text="  ",font=("Gothic MS",2),bg=Home_BACK_COL).pack()
+
+    ImageEncodeFrame3 = Frame(mainWindow)
+    Label(mainWindow,text=" ",font=("Gothic MS",8),bg=Home_BACK_COL).pack()
+
+    ImageEncodeFrame3 = Frame(mainWindow,bg=Home_BACK_COL)
+    ImageEncodeFrame3.pack(side=TOP,anchor=W)
+    Label(ImageEncodeFrame3,text="    ",font=("Gothic MS",4),bg=Home_BACK_COL).pack(side=LEFT)
+    Label(ImageEncodeFrame3,text="Output Image",font=("Gothic MS",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
+
+    Label(mainWindow,text="  ",font=("Gothic MS",1),bg=Home_BACK_COL).pack()
+
+    ImageEncodeFrame_4 = Frame(mainWindow,bg=Home_BACK_COL)
+    Label(ImageEncodeFrame_4,text="    ",font=("Gothic MS",4),bg=Home_BACK_COL).pack(side=LEFT)
+
+    xscrollbar2 = Scrollbar(ImageEncodeFrame_4, orient=HORIZONTAL,bg=Home_BACK_COL)
+    xscrollbar2.pack(side=BOTTOM,fill=BOTH)
+
+    EncodeFrame_EntryBox2 = Entry(ImageEncodeFrame_4,cursor='',font=("century",13),width=33,textvariable=output_Entry,xscrollcommand=xscrollbar2.set,state=DISABLED)
+    EncodeFrame_EntryBox2.pack(side=LEFT)
+    xscrollbar2.config(command=EncodeFrame_EntryBox2.xview)
+
+    Label(ImageEncodeFrame_4,text="      ",font=("Gothic MS",4),bg=Home_BACK_COL).pack(side=LEFT)
+    EncodeFrame_Button2 = Button(ImageEncodeFrame_4,text="Select",font=("Gothic MS",12),width=6,height=1,state=DISABLED,command=choose_Output_file)
+    EncodeFrame_Button2.pack(side=RIGHT)
+
+    ImageEncodeFrame_4.pack(side=TOP,anchor=W)
+
+    Label(mainWindow,text="  ",font=("Gothic MS",10),bg=Home_BACK_COL).pack()
+
+    ImageEncodeFrame_5 = Frame(mainWindow,bg=Home_BACK_COL)
+    ImageEncodeFrame_6 = Frame(mainWindow,bg=Home_BACK_COL)
+
+
+    Label(ImageEncodeFrame_5,text="    ",font=("Gothic MS",4),bg=Home_BACK_COL).pack(side=LEFT)
+    Label(ImageEncodeFrame_5,text="Hidden Audio File",font=("Gothic MS",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
+
+    Label(ImageEncodeFrame_6,text="    ",font=("Gothic MS",4),bg=Home_BACK_COL).pack(side=LEFT)
+
+    xscrollbar3 = Scrollbar(ImageEncodeFrame_6, orient=HORIZONTAL,bg=Home_BACK_COL)
+    xscrollbar3.pack(side=BOTTOM,fill=BOTH)
+
+    EncodeFrame_EntryBox3 = Entry(ImageEncodeFrame_6,cursor='',textvariable=TextFile_Entry,font=("century",13),xscrollcommand=xscrollbar3.set,width=33,state=DISABLED)
+    EncodeFrame_EntryBox3.pack(side=LEFT)
+
+    xscrollbar3.config(command=EncodeFrame_EntryBox3.xview)
+
+    Label(ImageEncodeFrame_6,text="      ",font=("Gothic MS",4),bg=Home_BACK_COL).pack(side=LEFT)
+    EncodeFrame_Button3 = Button(ImageEncodeFrame_6,text="Select",font=("Gothic MS",12),width=6,height=1,state=DISABLED,command=choose_IN_Image__file)
+    EncodeFrame_Button3.pack(side=RIGHT)
+
+    ImageEncodeFrame_5.pack(side=TOP,anchor=W)
+    Label(mainWindow,text="  ",font=("Gothic MS",2),bg=Home_BACK_COL).pack()
+    ImageEncodeFrame_6.pack(side=TOP,anchor=W)
+
+    ImageEncodeFrame_7 = Frame(mainWindow,bg=Home_BACK_COL)
+    Label(mainWindow,text="  ",font=("Gothic MS",2),bg=Home_BACK_COL).pack(side=BOTTOM)
+    ImageEncodeFrame_7.pack(side=BOTTOM)
+
+    EncodeFrame_Button4 = Button(ImageEncodeFrame_7,text="Back",font=("Gothic MS",14,BOLD,ITALIC),width=12,bg=ButtonColour_2,command=back_Btn_Fun)
+    EncodeFrame_Button4.pack(side=LEFT)
+    Label(ImageEncodeFrame_7,text="      ",font=("Gothic MS",10),bg=Home_BACK_COL).pack(side=LEFT)
+    EncodeFrame_Button5 = Button(ImageEncodeFrame_7,text="Encode",font=("Gothic MS",14,BOLD,ITALIC),width=12,state=DISABLED,bg=ButtonColour_1,command=main_Image_encode)
+    EncodeFrame_Button5.pack(side=LEFT)
+
 
 def click_Image_Encode_Screen():
     global filename, output_filename, text_Filename
@@ -2054,7 +2243,7 @@ def show_EncodeScreen():
     Text_button.pack()
 
     Label(EncodeFrame,text=" ",font=("Gothic MS",8),bg=Home_BACK_COL).pack()
-    Text_button = Button(EncodeFrame,text="Image into\n Audio",font=("Gothic MS",14,BOLD,ITALIC),width=12,command=click_EncodeScreen_Text,bg=ButtonColour_1)#todo change command button
+    Text_button = Button(EncodeFrame,text="Image into\n Audio",font=("Gothic MS",14,BOLD,ITALIC),width=12,command=click_Image_to_Audio_Encode_Screen,bg=ButtonColour_1)#todo change command button
     Text_button.pack()
 
     CreateToolTip(Text_button, text = "Encode Text Or Text File\nBehind An Image File")
