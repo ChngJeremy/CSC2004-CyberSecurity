@@ -1204,9 +1204,10 @@ def click_Audio_Encode_Screen():
     EncodeFrame_Button5 = Button(AudioEncodeFrame_8,text="Encode",font=("Gothic MS",14,BOLD,ITALIC),width=12,state=DISABLED,bg=ButtonColour_1,command=main_Text_encode)
     EncodeFrame_Button5.pack(side=LEFT)
 
-###todo
+###todo encode options###
 def click_Image_to_Audio_Encode_Screen():
     global filename, output_filename, text_Filename
+
     #Input File Chooser
     def choose_Input_file():
         global filename
@@ -1223,6 +1224,7 @@ def click_Image_to_Audio_Encode_Screen():
             EncodeFrame_Button3.config(state=DISABLED)
             EncodeFrame_Button5.config(state=DISABLED)
             carrier_Entry.set("")
+
     #Output File Chooser
     def choose_Output_file():
         global output_filename
@@ -1396,6 +1398,7 @@ def click_Image_to_Audio_Encode_Screen():
 
 def click_Image_Encode_Screen():
     global filename, output_filename, text_Filename
+
     #Input File Chooser
     def choose_Input_file():
         global filename
@@ -1412,6 +1415,7 @@ def click_Image_Encode_Screen():
             EncodeFrame_Button3.config(state=DISABLED)
             EncodeFrame_Button5.config(state=DISABLED)
             carrier_Entry.set("")
+
     #Output File Chooser
     def choose_Output_file():
         global output_filename
@@ -1585,6 +1589,7 @@ def click_Image_Encode_Screen():
 
 def click_DecodeScreen_Text():
     global filename, output_filename, text_Filename
+
     #Input File to Decode
     def choose_Input_file():
         global filename
@@ -1802,6 +1807,7 @@ def click_DecodeScreen_Text():
 
 def click_DecodeScreen_Audio():
     global filename, output_filename, text_Filename
+
     #Input File Chooser
     def choose_Input_file():
         global filename
@@ -2017,6 +2023,7 @@ def click_DecodeScreen_Audio():
 
 def click_DecodeScreen_Image():
     global filename, output_filename, text_Filename
+    
     #Input File Chooser
     def choose_Input_file():
         global filename

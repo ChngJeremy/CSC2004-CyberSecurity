@@ -29,11 +29,6 @@ def openmp3(filename):
 def audiotoimage(filename):
     print("[+] Converting audio to image!")
     data, samplerate = sf.read(filename, dtype='int16')
-    # print(len(data))
-    #
-    # print(data[66149])
-    #
-    # print(samplerate)
 
     npdata = np.array(data)
     npdatat = npdata.transpose()
@@ -149,14 +144,14 @@ def main():
     #use img2img to decode LSB
     #use img2audio to get back audio
     n_bits=int(input("Type in number of LSB: "))
-    filepath='sample.wav'
+    filepath='testfiles\sample.wav'
 
     audiotoimage(filepath)
 
     encoded_image_path = "./secret.png"
     decoded_image_path = "tmpIMG/decodedImage.png"
 
-    carrierImage_path = "mkt.jpg"
+    carrierImage_path = "testfiles\mkt.jpg"
     secretImage_path = "tmpIMG/encodedImage.png"
 
     secretImage = Image.open(secretImage_path)
@@ -171,11 +166,11 @@ def main():
     carrierImage = "./secret.png"
     image_to_decode = Image.open(carrierImage)
     img.decode(image_to_decode, n_bits).save(decoded_image_path)
-    print("[+] Secret audio(image) extracted from image!")
+    print("[+] Secret audio(image) extracted frotestfiles\m image!")
     print("[+] Converting secret audio back to .wav...")
     #Resize upscaled image back to original size
     Image.open(decoded_image_path).resize(secretImage.size).save(decoded_image_path)
-    imagetoaudio("tmpIMG/decodedImage.png","extracted.wav")
+    imagetoaudio("tmpIMG/decodedImage.png","testfiles\extracted.wav")
     print("[+] Converted!")
 
 
