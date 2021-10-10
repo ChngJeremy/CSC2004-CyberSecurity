@@ -1,34 +1,38 @@
-import ffmpy
+#import ffmpy ##NOT USED
 import soundfile as sf
 import numpy as np
 import cv2
 from PIL import Image
 import RGBAImg2img as img
 
-
-def mp3towav(src, dest):
-    ff = ffmpy.FFmpeg(
-        inputs={src: None},
-        outputs={dest: None})
-    ff.run()
-
-
-def wavtomp3(src, dest):
-    ff = ffmpy.FFmpeg(
-        inputs={src: None},
-        outputs={dest: None})
-    ff.run()
-
-
-def openmp3(filename):
-    with open(filename, 'rb') as f:
-        while f.readable():
-            print(f.read(1))
-
+##NOT USED##
+# def mp3towav(src, dest):
+#     ff = ffmpy.FFmpeg(
+#         inputs={src: None},
+#         outputs={dest: None})
+#     ff.run()
+#
+#
+# def wavtomp3(src, dest):
+#     ff = ffmpy.FFmpeg(
+#         inputs={src: None},
+#         outputs={dest: None})
+#     ff.run()
+#
+#
+# def openmp3(filename):
+#     with open(filename, 'rb') as f:
+#         while f.readable():
+#             print(f.read(1))
+##NOT USED##
 
 def audiotoimage(filename):
-    print("[+] Converting audio to image!")
     data, samplerate = sf.read(filename, dtype='int16')
+    # print(len(data))
+    #
+    # print(data[66149])
+    #
+    # print(samplerate)
 
     npdata = np.array(data)
     npdatat = npdata.transpose()
@@ -143,37 +147,68 @@ def main():
     #use img2img to do LSB
     #use img2img to decode LSB
     #use img2audio to get back audio
+
+
+    #############
+    ##ENCODING##
+    ############
+    ##User input to select number of bits
     n_bits=int(input("Type in number of LSB: "))
-    filepath='testfiles\sample.wav'
+    #Payload file for encoding (User select in GUI)
+    filepath='sample.wav'
 
+    print("[+] Converting audio to image...")
     audiotoimage(filepath)
+    print("[+] Audio converted into image!")
 
+    #secret.png is the final product of encoding
     encoded_image_path = "./secret.png"
+    #Leave this path hardcoded
     decoded_image_path = "tmpIMG/decodedImage.png"
 
-    carrierImage_path = "testfiles\mkt.jpg"
+    #Carrier file for encoding (User select in GUI)
+    carrierImage_path = "mkt.jpg"
+
+    #Leave this path hardcoded
     secretImage_path = "tmpIMG/encodedImage.png"
 
     secretImage = Image.open(secretImage_path)
+
+    #!!Need to keep this as a variable for the decoding part later!!!!!!!!!!!!!!!!!!
+    originalSize=secretImage.size
+    ################################################################################
+
+    #convert carrier file to RGBA format
     carrierImage = Image.open(carrierImage_path).convert('RGBA')
-    secretImageTmp = secretImage.resize(carrierImage.size)
+    secretImage = secretImage.resize(carrierImage.size)
     print("[+] Encoding to image....")
-    img.encode(secretImageTmp, carrierImage, n_bits).save(encoded_image_path)
+    img.encode(secretImage, carrierImage, n_bits).save(encoded_image_path)
     print("[+] Encoded!")
 
+    #############
+    ##DECODING##
+    ############
     #change carrier image path to secret.png for decoding
     print("[+] Extracting secret audio from image...")
+
+    #Can make this path user select in GUI
     carrierImage = "./secret.png"
     image_to_decode = Image.open(carrierImage)
+
+
     img.decode(image_to_decode, n_bits).save(decoded_image_path)
-    print("[+] Secret audio(image) extracted frotestfiles\m image!")
+    print("[+] Secret audio(image) extracted from image!")
     print("[+] Converting secret audio back to .wav...")
     #Resize upscaled image back to original size
-    Image.open(decoded_image_path).resize(secretImage.size).save(decoded_image_path)
-    imagetoaudio("tmpIMG/decodedImage.png","testfiles\extracted.wav")
+    #Opens the decoded image, resize back to how it was before encoding, then save it back to file
+    Image.open(decoded_image_path).resize(originalSize).save(decoded_image_path)
+
+    #extracted.wav is the final product from decoding
+    imagetoaudio(decoded_image_path,"extracted.wav")
     print("[+] Converted!")
 
-
+#All paths under tmpIMG/xxx can leave hardcoded, won't be touched by user at all
+#secret.png and extracted.wav are the final output files
 
 if __name__ == '__main__':
     main()
