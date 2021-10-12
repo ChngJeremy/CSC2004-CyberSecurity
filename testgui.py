@@ -380,7 +380,7 @@ class SteganographyException(Exception):
 #                             
 #                   Function to hide unhidden text in image file                
 #                          convert output file in png format
-#                                                                                      
+#   Kin Leung                                                                                   
 ########################################################################################
 class LSBSteg():
     def __init__(self, im):
