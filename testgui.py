@@ -2241,7 +2241,7 @@ def show_EncodeScreen():
     Encode_Banner = Label(encode_banner_Frame,text=" Encode ",font=("Gothic MS",35,ITALIC,UNDERLINE),bg=Banner_Colour_1)
     Encode_Banner.pack()
     Label(encode_banner_Frame,text=" ",font=("Gothic MS",2),bg=Banner_Colour_1).pack()
-    encode_Description = Label(encode_banner_Frame,text="Hide Text Text-File In Image\n& Audio File Also Image In Image",font=("Gothic MS",14,ITALIC),bg=Banner_Colour_1)
+    encode_Description = Label(encode_banner_Frame,text="Please Choose the \n following encoding choices below...",font=("Gothic MS",14,ITALIC),bg=Banner_Colour_1)
     encode_Description.pack()
     encode_banner_Frame.pack()
 
@@ -2282,7 +2282,7 @@ def show_DecodeScreen():
     Decode_Banner = Label(Decode_banner_Frame,text=" Decode ",font=("Gothic MS",35,ITALIC,UNDERLINE),bg=Banner_Colour_1)
     Decode_Banner.pack()
     Label(Decode_banner_Frame,text=" ",font=("Gothic MS",2),bg=Banner_Colour_1).pack()
-    Decode_Description = Label(Decode_banner_Frame,text="Extract Text From Image & Audio\nFile Also Image From Image",font=("Gothic MS",14,ITALIC),bg=Banner_Colour_1)
+    Decode_Description = Label(Decode_banner_Frame,text="Please choose the \n decoding choices below...",font=("Gothic MS",14,ITALIC),bg=Banner_Colour_1)
     Decode_Description.pack()
     Decode_banner_Frame.pack()
 
